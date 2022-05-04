@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fodinha/history/view/history_view.dart';
 import 'package:fodinha/home/view/home_view.dart';
 import 'package:get/route_manager.dart';
 
@@ -19,7 +20,10 @@ class Fodinha extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      getPages: [GetPage(name: '/', page: () => HomeView())],
+      getPages: [
+        GetPage(name: '/', page: () => HomeView()),
+        GetPage(name: '/history', page: () => HistoryView())
+      ],
     );
   }
 }

@@ -113,6 +113,12 @@ class HomeView extends StatelessWidget {
               letterSpacing: 10),
         ),
         backgroundColor: const Color.fromRGBO(0, 124, 118, 1),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.history),
+            onPressed: () => Get.toNamed('/history'),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.only(bottom: 60),
@@ -139,7 +145,7 @@ class HomeView extends StatelessWidget {
                     return Dismissible(
                       key: Key(item.name),
                       onDismissed: (direction) {
-                        controller.users.removeAt(index);
+                        controller.removeUser(index);
                         ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text('${item.name} eliminado')));
                       },
@@ -167,9 +173,7 @@ class HomeView extends StatelessWidget {
                                 icon: const Icon(Icons.remove),
                                 color: Colors.white,
                                 onPressed: () {
-                                  if (controller.users[index].score.value > 0) {
-                                    controller.users[index].score.value--;
-                                  }
+                                  controller.removePoint(index);
                                 },
                               ),
                               IconButton(
@@ -177,7 +181,7 @@ class HomeView extends StatelessWidget {
                                 color: Colors.white,
                                 icon: const Icon(Icons.add),
                                 onPressed: () {
-                                  controller.users[index].score.value++;
+                                  controller.addPoint(index);
                                 },
                               ),
                             ],
